@@ -4,7 +4,7 @@ This directory contains code examples for interacting with GLYNT services in
 Python3.6+. They require that you have installed the requirements from
 requirements.txt to your env (or better yet, a virtual environment). They also
 assume that you have exported a valid `GLYNT_USERNAME` and `GLYNT_PASSWORD` to
-your OS envrinoment variables.
+your OS environment variables.
 
 ## upload_document.py
 
