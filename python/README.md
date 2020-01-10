@@ -11,7 +11,7 @@ your OS envrinoment variables.
 This script uploads a document from your local system to a data pool of your
 choice. To run it, make sure you have the ID of the data pool you'd like to
 upload to, have the file on your computer, and know it's type (see
-http://localhost:4567/?shell#create-a-document for information on supported
+https://api.glynt.ai/v6/docs#create-a-document for information on supported
 file types and the exact string to use for each) This script is invoked like
 so:
 
