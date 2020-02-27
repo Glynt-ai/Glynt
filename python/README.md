@@ -22,3 +22,25 @@ For example:
 ```shell
 ./upload_document.py H75fui my_awesome_document application/pdf /home/myuser/myawesomedoc.pdf
 ```
+
+## legacy_upload_document.py
+
+This script is an example of the legacy method of uploading a document to Glynt.
+See the glynt documentation for details of the differences between this and the
+currently recommended method of uploading. It can be run in the same way as
+upload_document.py.
+
+```shell
+./legacy_upload_document.py <data_pool_id> <label> <content_type> <filepath>
+```
+For example:
+```shell
+./legacy_upload_document.py H75fui my_awesome_document application/pdf /home/myuser/myawesomedoc.pdf
+```
+
+## utils.py
+
+This module contains utility methods used by the upload scripts to generate the
+different data types required by Glynt. This includes methods to generate an
+md5 hash or a base64 representation of a document before uploading. It also
+includes a method which handles user authorization before making api requests.

@@ -2,10 +2,10 @@
 import fire
 import requests
 
-from utils import get_token, get_content_b64
+from utils import get_token, get_content_md5
 
 
-def upload_document(
+def legacy_upload_document(
     data_pool_id,
     label,
     content_type,
@@ -13,8 +13,9 @@ def upload_document(
 ):
     token, token_type = get_token()
 
-    content_b64 = get_content_b64(filepath)
+    content_md5 = get_content_md5(filepath)
 
+    # POST document and store response content
     resp = requests.post(
         url=f'https://api.glynt.ai/v6/data-pools/{data_pool_id}/documents/',
         headers={
@@ -24,14 +25,26 @@ def upload_document(
         json={
             'label': label,
             'content_type': content_type,
-            'content': content_b64
+            'content_md5': content_md5
         }
     )
     assert resp.status_code == 201
     document = resp.json()
 
+    # PUT document content
+    with open(filepath, 'rb') as f:
+        resp = requests.put(
+            url=document['file_upload_url'],
+            headers={
+                'content-type': content_type,
+                'content-md5': content_md5
+            },
+            data=f.read()
+        )
+    assert resp.status_code == 200
+
     return document
 
 
 if __name__ == '__main__':
-    fire.Fire(upload_document)
+    fire.Fire(legacy_upload_document)
